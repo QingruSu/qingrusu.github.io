@@ -1,0 +1,36 @@
+#header {
+  background-color: darkblue;
+  color: lightgreen;
+  text-align: center
+}
+
+#information {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#header {
+  column-count: 1;
+  column-width: 300px
+}
+
+#information {
+  column-count: 3;
+  column-rule-style: dotted;
+  column-width: 300px
+}
+
+.image img {
+  max-width: 200px;
+  width: 200px;
+  height: auto;
+}
+
+#experience {
+  color: brown;
+  text-decoration: underline;
+  direction: rtl;
+  font-family: "Times New Roman", Times, serif;
+  font-style: oblique;
+}
