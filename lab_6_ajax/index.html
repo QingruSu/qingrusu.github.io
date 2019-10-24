@@ -16,9 +16,12 @@
         </div>
     </div>
     <script>
-        function getRandom(min, max) {
-            return Math.floor(Math.random() * (max - min) + min);
-        }
+        function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math. floor(Math.random() * (max - min + 1)) + min;
+      }
+        
         function loadData() {
             fetch('ajax_sample.json')
                 .then(res => res.json())
@@ -36,7 +39,7 @@
                 }
                 p.push(random);
                 let el = document.createElement("p");
-                el.innerText = i.toString() + ". " + array[random];
+                el.innerText = i + ". " + array[random];
                 element.appendChild(el);
             }
         } 
