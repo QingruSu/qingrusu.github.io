@@ -16,12 +16,30 @@
     </div>
   </div>
   <script>
+    function getRandom(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
     function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(res => res.map(c => c.code))
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then(data => data.map(c => c.name + " (" + c.code + ")"))
+        .then(data => displayData(data));
     }
+    function displayData(array) {
+      const element = document.querySelector(".content");
+      element.innerHTML = "";
+      let c = [];
+      for (let i = 1; i <= 15; i++) {
+        let random = getRandom(0, 242);
+        while (c.includes(random)) {
+          continue;
+        }
+        c.push(random);
+        let el = document.createElement("c");
+        el.innerText = i.toString() + ". " + array[random];
+        element.appendChild(el);
+      }
+    } 
   </script>
 </body>
 
