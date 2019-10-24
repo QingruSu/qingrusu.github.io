@@ -28,14 +28,14 @@
         function displayData(array) {
             const element = document.querySelector(".content");
             element.innerHTML = "";
-            let t = [];
+            let c = [];
             for (let i = 1; i <= 15; i++) {
                 let random = getRandom(0, 242);
-                while (t.includes(random)) {
+                while (c.includes(random)) {
                     continue;
                 }
-                p.push(random);
-                let el = document.createElement("t");
+                c.push(random);
+                let el = document.createElement("c");
                 el.innerText = i.toString() + ". " + array[random];
                 element.appendChild(el);
             }
