@@ -22,7 +22,7 @@
         function loadData() {
             fetch('ajax_sample.json')
                 .then(res => res.json())
-                .then(data => data.map(c => c.name + " (" + c.code + ")"))
+                .then(data => data.map(ctry => ctry.name + " (" + ctry.code + ")"))
                 .then(data => displayData(data));
         }
         function displayData(array) {
