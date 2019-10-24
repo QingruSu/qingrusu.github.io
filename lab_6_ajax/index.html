@@ -33,7 +33,7 @@
             element.innerHTML = "";
             let p = [];
             for (let i = 1; i <= 15; i++) {
-                const selectNumber = getRandomIntInclusive(0, 242);
+                const selectNumber = getRandom(0, 242);
                 let el = document.createElement("p");
                 el.innerText = i.toString() + ". " + array[selectNumber];
                 element.appendChild(el);
