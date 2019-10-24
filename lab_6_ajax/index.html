@@ -26,7 +26,8 @@
         .then(data => displayData(data));
     }
     function displayData(array) {
-      const array = data.map((i) => i.name);
+      const list = JSON.parse(json);
+      const Array = list.map((i) => i.name);
       const element = document.querySelector(".content");
       element.innerHTML = "";
       let c = [];
