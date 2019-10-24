@@ -33,13 +33,9 @@
             element.innerHTML = "";
             let p = [];
             for (let i = 1; i <= 15; i++) {
-                let random = getRandom(0, 242);
-                while (p.includes(random)) {
-                    continue;
-                }
-                p.push(random);
+                const selectNumber = getRandomIntInclusive(0, 242);
                 let el = document.createElement("p");
-                el.innerText = i + ". " + array[random];
+                el.innerText = i.toString() + ". " + array[selectNumber];
                 element.appendChild(el);
             }
         } 
