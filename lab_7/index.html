@@ -48,21 +48,25 @@
             return f == "114 University View";
           });
           let b = "UMD Bus Routes";
-          f = data.toString();  
+          f = t.toString();  
           document.querySelector(".header").innerText  = b +" " + t ;
-         
+        
         });
     }
-    function displayData(array) {
+    function displayData(array) { 
       const element = document.querySelector(".content");
       element.innerHTML = "";
-      let p = [];
+      let p = []; 
+      
       for (let i = 1; i <= array.length; i++) {
         let selectNumber =getRandom(0, array.length-1);
         if(p.includes(selectNumber)){
           continue;
-         
+        } 
+        if(Array.prototype.includes("114 University View") == true){
+          continue;
         }
+       
         p.push(selectNumber);
         
         let el = document.createElement("p");
