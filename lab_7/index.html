@@ -48,15 +48,23 @@
             return f == "114 University View";
           });
           let b = "UMD Bus Routes";
-          document.querySelector(".header").innerText  = b + t ;
-          
+          f = data.toString();  
+          document.querySelector(".header").innerText  = b +" " + t ;
+         
         });
     }
     function displayData(array) {
       const element = document.querySelector(".content");
       element.innerHTML = "";
+      let p = [];
       for (let i = 1; i <= array.length; i++) {
-        const selectNumber = getRandom(0, array.length);
+        let selectNumber =getRandom(0, array.length-1);
+        if(p.includes(selectNumber)){
+          continue;
+         
+        }
+        p.push(selectNumber);
+        
         let el = document.createElement("p");
         el.innerText = i.toString() + ". " + array[selectNumber];
         element.appendChild(el);
