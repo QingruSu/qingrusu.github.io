@@ -16,20 +16,26 @@
     </div>
   </div>
   <script>
+    function getRandom(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math. floor(Math.random() * (max - min + 1)) + min;
+      }
+
     function loadData() {
+      console.log('fetch');
       fetch('https://api.umd.io/v0/bus/routes')
         .then(res => res.json())
         .then(res => {
-          // you can now work in this area
           console.log(res);
           return res;
         })
-        .then(res => res.map(b => {
-          let bus_name = b.route_id.toUpperCase();
-          if (b.title.includes(bus_name)) {
-            bus_name = b.title;
+        .then(res => res.map(c => {
+          let bus_name = c.route_id.toUpperCase();
+          if (c.title.includes(bus_name)) {
+            bus_name = c.title;
           } else {
-            bus_name += " " + b.title;
+            bus_name += " " + c.title;
           }
           return bus_name;
         }))
@@ -49,8 +55,9 @@
       const element = document.querySelector(".content");
       element.innerHTML = "";
       for (let i = 1; i <= array.length; i++) {
+        const selectNumber = getRandom(0, array.length);
         let el = document.createElement("p");
-        el.innerText = i.toString() + ". " + array[i - 1];
+        el.innerText = i.toString() + ". " + array[selectNumber];
         element.appendChild(el);
       }
     }
