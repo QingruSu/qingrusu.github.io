@@ -44,11 +44,10 @@
           return data;
         })
         .then(data => {
-          let t = data.find(function (e) {
-            return e == "104 College Park Metro";
+          let t = data.find(function (f) {
+            return f == "114 University View";
           });
-          document.querySelector(".header").innerText += " " + t;
-          window.document.title = t;
+          document.querySelector(".header").innerText = t;
         });
     }
     function displayData(array) {
