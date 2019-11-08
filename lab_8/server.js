@@ -35,20 +35,22 @@ app.use(express.json());
  *  - Express: app.use()
  *    https://expressjs.com/en/4x/api.html#app.use
  */
-app.use(express.static('public'));
-
-// this is a single route, in the simplest possible format
-// the simplest format is not necessarily the best one.
-// this is, right now, an introduction to Callback Hell
-// but it is okay for a first-level example
 app.get('/api', (req, res) => {
   const baseURL = 'https://api.umd.io/v0/bus/routes';
   fetch(baseURL)
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
-      res.send({ data: data });
+      let info = []
+      data.map(a => {
+        if(a.course_id.includes("INST")){
+          let ret = a.course_id +": " + a.name;
+          info.push(ret);
+        }
+      });
+      console.log(info);
+      return info;
     })
+    .then((info) => res.send({data:info}))
     .catch((err) => {
       console.log(err);
       res.redirect('/error');
