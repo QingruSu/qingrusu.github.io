@@ -2,71 +2,66 @@
 <html lang="en">
 
 <head>
-  <title>Bus Routes</title>
-  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css" />
 </head>
 
 <body>
   <div class="container">
     <div class="wrapper">
-      <div class="header">Course id:</div>
-      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="header">API Loader</div>
+      <button class="button" onclick="loadData()">
+        Load Some JSON from a server
+      </button>
       <div class="content"></div>
       <div class="footer"></div>
     </div>
   </div>
   <script>
     function loadData() {
-      fetch('https://api.umd.io/v0/courses/list') // GET a new endpoint from api.umd.io
+      console.log("fetch"); // confirm code is running on click 
+      fetch('https://api.umd.io/v0/courses/list')
         .then(res => res.json())
-        .then(data => { // part 1
-          console.log(data);
-          return data;
-        })
-        .then(data => {
-          temp = data;
-          console.log(temp); // logging step to check what we got 
-          infoSci = [];
-          for (let i = 0; i < temp.data; i++) {
-            console.log(temp.data[i].dept);
-            if (temp.data[i].dept_id == "INST") {
-              infoSci.push(temp.data[i]);
-            }
-          }
-          infoSciCourses = infoSci.map(i => i.course_id + ": " + i.name);
-          console.log(infoSciCourses);
-          return data;
-        })
-        .then(data => { // Make array for use in list
-          const CourseArray = data.map(c => `${c.course_id}`);
-          const selectedCourse = CourseArray.find(f => f.includes('INST')); 
+
+
+
+        .then(res => { // Make array for use in list
+
+          const CourseArray = res.map(c => c.course_id + ": " + c.name);
+
+          const selectedCourse = CourseArray.find(f => f.includes('INST'));
           const newHeaderName = `Course id: ${selectedCourse}`;
           document.querySelector('.header').innerText = newHeaderName;
+          const filterItems = (array) => {
+            return CourseArray.filter((el) =>
+              el.indexOf(array) > -1
+            );
+          }
+          console.log(filterItems('INST')); 
+          const InstCourses = filterItems('INST');
+          makeListInHTML(InstCourses);
           
+        
           
-         makeListInHTML(CourseArray);
-          return data;
         
+        });
 
-        })
-        
 
-    }
 
-    function makeListInHTML(array) {
-      const htmlTarget = document.querySelector('.content');
-      htmlTarget.innerHTML = '';
-      let el1 = document.createElement("ul");
-      el1.className = 'list';
-      htmlTarget.appendChild(el1);
+      function makeListInHTML(array) {
+        const htmlTarget = document.querySelector('.content');
+        htmlTarget.innerHTML = '';
+        let el1 = document.createElement("ul");
+        el1.className = 'list';
+        htmlTarget.appendChild(el1);
 
-      for (let i = 0; i < array.length; i++) {
-        let el = document.createElement("li");
-        el.innerText = array[i];
-        htmlTarget.appendChild(el);
-      };
-    }
-
+        for (let i = 0; i < array.length; i++) {
+          let el = document.createElement("li");
+          el.innerText = array[i];
+          htmlTarget.appendChild(el);
+        };
+      }
+    } 
   </script>
 </body>
 
