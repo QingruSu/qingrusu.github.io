@@ -39,18 +39,15 @@ app.get('/api', (req, res) => {
   const baseURL = 'https://api.umd.io/v0/bus/routes';
   fetch(baseURL)
     .then((r) => r.json())
-    .then((data) => {
-      let info = []
-      data.map(a => {
-        if(a.course_id.includes("INST")){
-          let ret = a.course_id +": " + a.name;
-          info.push(ret);
-        }
+    .then(data => {
+      const info = data.filter(function(name){
+        return name.dept_id == "INST";
       });
+      const result = info.map(c => c.course_id +": "+ c.name + " ")
       console.log(info);
-      return info;
+      res.send({data:result})
     })
-    .then((info) => res.send({data:info}))
+  
     .catch((err) => {
       console.log(err);
       res.redirect('/error');
