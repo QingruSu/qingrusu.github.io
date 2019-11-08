@@ -3,77 +3,61 @@
 
 <head>
   <title>Test AJAX page</title>
-  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css" />
 </head>
 
 <body>
   <div class="container">
     <div class="wrapper">
-      <div class="header">UMD Bus Routes</div>
-      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="header">API Loader</div>
+      <button class="button" onclick="loadData()">
+        Load Some JSON from a server
+      </button>
       <div class="content"></div>
       <div class="footer"></div>
     </div>
   </div>
   <script>
-    function getRandom(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math. floor(Math.random() * (max - min + 1)) + min;
-      }
-
     function loadData() {
-      console.log('fetch');
-      fetch('https://api.umd.io/v0/bus/routes')
+      console.log("fetch"); // confirm code is running on click 
+      fetch('https://api.umd.io/v0/courses/list')
         .then(res => res.json())
-        .then(res => {
-          console.log(res);
+        
+
+
+        .then(res => { // Make array for use in list
+          
+          const CourseArray = res.map(c => c.course_id + ": " + c.name);
+          
+          const selectedCourse = CourseArray.find(f => f.includes('INST')); 
+          const newHeaderName = `Course id: ${selectedCourse}`;
+          document.querySelector('.header').innerText = newHeaderName;
+
+          makeListInHTML(CourseArray);
+            console.log(res);
           return res;
-        })
-        .then(res => res.map(c => {
-          let bus_name = c.route_id.toUpperCase();
-          if (c.title.includes(bus_name)) {
-            bus_name = c.title;
-          } else {
-            bus_name += " " + c.title;
-          }
-          return bus_name;
-        }))
-        .then(data => {
-          displayData(data);
-          return data;
-        })
-        .then(data => {
-          let t = data.find(function (f) {
-            return f == "114 University View";
           });
-          let b = "UMD Bus Routes";
-          f = t.toString();  
-          document.querySelector(".header").innerText  = b +" " + t ;
+          
+         
         
-        });
-    }
-    function displayData(array) { 
-      const element = document.querySelector(".content");
-      element.innerHTML = "";
-      let p = []; 
+    function makeListInHTML(array) {
+      const htmlTarget = document.querySelector('.content');
+      htmlTarget.innerHTML = '';
+      let el1 = document.createElement("ul");
+      el1.className = 'list';
+      htmlTarget.appendChild(el1);
       
-      for (let i = 1; i <= array.length; i++) {
-        let selectNumber =getRandom(0, array.length-1);
-        if(p.includes(selectNumber)){
-          continue;
-        } 
-        if(Array.prototype.includes("114 University View") == true){
-          continue;
+      for (let i = 0; i < array.length; i++) {
+        if (i.dept_id === "INST") {
+              array.push(array[i]);
+              
         }
-       
-        p.push(selectNumber);
-        
-        let el = document.createElement("p");
-        el.innerText = i.toString() + ". " + array[selectNumber];
-        element.appendChild(el);
-      }
+        let el = document.createElement("li");
+        el.innerText = array[i];
+        htmlTarget.appendChild(el);
+      };
     }
+    } 
   </script>
 </body>
 
