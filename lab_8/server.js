@@ -36,7 +36,7 @@ app.use(express.json());
  *    https://expressjs.com/en/4x/api.html#app.use
  */
 app.get('/api', (req, res) => {
-  const baseURL = 'https://api.umd.io/v0/bus/routes';
+  const baseURL = 'https://api.umd.io/v0/courses/list';
   fetch(baseURL)
     .then((r) => r.json())
     .then(data => {
