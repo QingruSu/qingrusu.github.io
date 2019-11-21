@@ -1,0 +1,97 @@
+
+  .container {
+    color: purple;
+    text-decoration: underline;
+    height: 40px;
+    margin: 0;
+  }
+  
+    #start {
+      color: black;
+      text-align: center;
+      height: auto;
+    }
+  
+.newsline {
+    font-size: 42px;
+    font-style: bold;
+    font-weight: 400;
+  }
+  
+.wrapper {
+    width: 60%;
+    height: 1000px;
+    
+    margin: 0 auto;
+    background: grey;
+    font-family: "Times New Roman", Times, serif;
+  }
+  
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+ 
+  .head {
+    margin: 0;
+    padding: 0;
+  }
+  .interior{
+    text-align: center;
+    align-items:center;
+    display: flex;
+    }
+  .second_container {
+    display: flex;
+    justify-content: center;
+    background: pink;
+    height: 150px;
+  }
+ 
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+.First_textbox {
+    background:red;
+    height: 75px;
+    width: 42.5%;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    justify-content: center
+  }
+
+  .second_textbox {
+    background:red;
+    height: 75px;
+    width: 42.5%;
+    margin-right: 25px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    float: right;
+    justify-items:top; 
+  
+
+   }
+  
+  .third_textbox {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    width:30%;
+    height: 75px;
+    width: 300px;
+    background: lightblue;
+    display: flex;
+    justify-content: center
+   
+  }
